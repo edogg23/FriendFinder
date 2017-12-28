@@ -1,7 +1,10 @@
 console.log('hello js file');
 
+
+
 $('#submit').on('click', function(event) {
 	event.preventDefault();
+	console.log('in submitbutton app.js');
 	// Gather user inputs
 	var userInput = {
 		name: $('#name').val().trim(),
@@ -19,16 +22,17 @@ $('#submit').on('click', function(event) {
 			$('#q10').val().trim()
 		]
 	};
-	console.log('userInput = ' + JSON.stringify(userInput));
+	console.log('userInput from app.js = ' + JSON.stringify(userInput));
+	
 	// Add user inputs to friends list
-	// $.post('/api/friends', userInput)
-	// 	.done(function(data) {
-			// console.log('response = ' + JSON.stringify(data));
-			// Set the name and image values of friend match
-			// $('#userMatch').html(data.matchName);
-   //  	$("#userMatchImage").attr("src", data.matchImage);
-    	// Pop open the modal dialog
-		// 	$('#modal1').modal('open');
-		// });
-});
+	$.post('/api/friends', userInput)
+      		.done(function(data) {
+      			console.log('response = ' + JSON.stringify(data));
+      			// Set the name and image values of friend match
+      			$('#userMatch').html(data.matchName);
+		    	// $("#userMatchImage").attr("src", data.matchImage);
+		    	// Pop open the modal dialog
+      			// $('#modal1').modal('open');
+      		});
+		});
 

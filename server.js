@@ -10,6 +10,13 @@ var PORT = process.env.PORT || 3000;
 
 var app = express();
 
+fs.readFile(__dirname + '/app/data/friends.js', 'utf8', function(err, data) {
+	if(err) {
+		return console.log(err);
+	}
+	// console.log(data);
+	console.log("able to read friends.js");
+});
 
 // middleware that makes static assets in the public folder avaliable
 app.use(express.static('app/public'));
