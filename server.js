@@ -10,7 +10,8 @@ var PORT = process.env.PORT || 3000;
 
 var app = express();
 
-// makes static assets in the public folder avaliable
+
+// middleware that makes static assets in the public folder avaliable
 app.use(express.static('app/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,6 +26,7 @@ app.get('/', function(req, res) {
 var htmlRoutes = require('./app/routing/htmlRoutes.js')(app);
 
 //apiRoutes(app);
+require(path.join(__dirname, './app/routing/apiRoutes'))(app);
 
 app.listen(PORT, function() {
 	console.log("Server is listening on PORT " + PORT);
